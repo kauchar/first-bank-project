@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First bank project</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+
+<body>
+    <div id="login-area">
+        <h1 class="text-center">Welcome To New Bank</h1>
+        <div class="submit-area">
+            <h4>Login</h4>
+            <input class="form-control" type="text" placeholder="Email">
+            <br>
+            <input class="form-control" type="password" name="" id="" placeholder="Password">
+            <br>
+            <button id="login" class="btn btn-success">Enter</button>
+        </div>
+    </div>
+    <div id="trngiction-area">
+        <div class="row">
+            <div class="col-md-4">
+               <div class="deposit status">
+                <h5>Deposit</h5>
+                <h2>$ <span id="curentDeposit">00</span></h2>
+               </div>
+            </div>
+            <div class="col-md-4">
+                <div class="withdrow status">
+                    <h5>Withdrow</h5>
+                <h2>$ <span id="curentWithdrow">00</span></h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="balance status">
+                    <h5>Balance</h5>
+                    <h2>$ <span id="curentBalance">1240</span></h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="submit-area">
+                    <h4>Deposit</h4>
+                <input id="depositAmount" type="text" placeholder="$amount you went to deposit" class="form-control"><br>
+                <button id="addDeposit" class="btn btn-success">Deposit</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+            <div class="submit-area">
+                <h4>withdrow</h4>
+                <input id="addAmount" type="text" placeholder="$amount you went to withdrow" class="form-control"><br>
+                <button id="addWithdrow" class="btn btn-success">Withdrow</button>
+            </div>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        const loginBtn=document.getElementById('login')
+        loginBtn.addEventListener('click',function(){
+           const lognAria=document.getElementById("login-area");
+           lognAria.style.display="none"
+           const trangiction=document.getElementById('trngiction-area');
+           trangiction.style.display="block"
+        })
+        //end login
+        const depositBtn=document.getElementById("addDeposit");
+        depositBtn.addEventListener("click",function(){
+            const depositAmount = document.getElementById("depositAmount").value;
+            const depoditNumber = parseFloat(depositAmount);
+
+            
+            updateDeposit("curentDeposit",depoditNumber);
+             updateDeposit("curentBalance",depoditNumber);
+            document.getElementById("depositAmount").value="";
+
+        })
+
+        ///deposit button
+        const withdrowBtn=document.getElementById("addWithdrow");
+        withdrowBtn.addEventListener("click",function(){
+            const withdrowAmountNumber=getInput("addAmount")
+            updateDeposit("curentWithdrow",withdrowAmountNumber);
+            updateDeposit("curentBalance", -1*withdrowAmountNumber)
+            document.getElementById("addAmount").value="";
+      
+        })
+        function getInput(id){
+            const withdrowAmount=document.getElementById(id).value;
+            const withdrowAmountNumber=parseFloat(withdrowAmount);
+            return withdrowAmountNumber;
+           
+        }
+
+        function updateDeposit(id,depoditNumber){
+            const curent = document.getElementById(id).innerText;
+            const curentNumber = parseFloat(curent);
+            const total = depoditNumber + curentNumber;
+            document.getElementById(id).innerText = total;
+
+        }
+    </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+ 
+</body>
+</html>
